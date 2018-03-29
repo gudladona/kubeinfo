@@ -22,17 +22,17 @@ This HTTP service authenticates to the Kubernetes API from an application runnin
 
 ## Installing this service on Kubernetes
 
-1. export DOCKER_USER = "gudladona87"
+1. `export DOCKER_USER = "gudladona87"`
 
-2. docker login --username gudladona87 --password-stdin     -- Password provided in the email
+2. `docker login --username gudladona87 --password-stdin`     -- Password provided in the email
 
 3. Install make
 
-4. make build push deploy
+4. `make build push deploy`
 
 ## Running tests
 
-    ``make test``
+    > make test
 
 ## Testing the API End to End
 
@@ -42,17 +42,23 @@ Once this service is installed on a Kubernetes cluster,
 
 * Grep for the Service `kubeinfo`. Copy the port the service is exposed on.
 
-> kubectl get svc | grep kubeinfo
- kubeinfo                                NodePort       100.64.219.181   <none>                                                 8080:31046/TCP                 27m
-
+    ```
+    > kubectl get svc | grep kubeinfo
+    kubeinfo                                NodePort       100.64.219.181   <none>                                                 8080:31046/TCP                 27m
+    ```
 * Find the pod that the service is running on
-> kubectl get po | grep kube
-  kubeinfo-7c854d54d8-vp2tw                            1/1       Running   0          30m
+    ```
+    > kubectl get po | grep kube
+    kubeinfo-7c854d54d8-vp2tw                            1/1       Running   0          30m
+    ```
 
 * Find the Node that the pod is running on
-> kubectl describe pod kubeinfo-7c854d54d8-vp2tw | grep 'Node:'
-  Node:           ip-10-75-24-178.ec2.internal/10.75.24.178
-
+    ```
+    > kubectl describe pod kubeinfo-7c854d54d8-vp2tw | grep 'Node:'
+    Node:           ip-10-75-24-178.ec2.internal/10.75.24.178
+    ```
 * Initiate a GET request on the Node and the port at the endpoint `/pods`
-> curl http://10.75.24.178:31046/pods
-  {"pod_count":314,"message":"OK"}
+    ```
+    > curl http://10.75.24.178:31046/pods
+    {"pod_count":314,"message":"OK"}
+    ```
