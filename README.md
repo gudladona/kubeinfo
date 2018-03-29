@@ -20,7 +20,13 @@ This HTTP service authenticates to the Kubernetes API from an application runnin
 
 * The security groups for AWS has ports 30000-32767 open for audience IP Address/Block.
 
-## Installing this service on Kubernetes
+## Installation
+
+```bash
+go get github.com/gudladona87/kubeinfo
+```
+
+## Installation on Kubernetes
 
 1. `export DOCKER_USER = "gudladona87"`
 
