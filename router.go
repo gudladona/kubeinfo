@@ -15,7 +15,6 @@ func health(w http.ResponseWriter, _ *http.Request, _ httprouter.Params) {
 	resp := models.Response{Message: "Healthy!"}
 	b, _ := json.Marshal(resp)
 
-	w.WriteHeader(http.StatusOK)
 	w.Write(b)
 }
 

@@ -17,13 +17,13 @@ func main() {
 
 	err := config.ReadConfigFromFile(*configfile)
 	if err != nil {
-		log.Fatal("error reading from config file")
+		log.Fatalf("error reading from config file: %v", err)
 	}
 
 	// Start HTTP Server
 	err = Start()
 	if err != nil {
-		log.Fatal("error starting http server")
+		log.Fatalf("error starting http server: %v", err)
 	}
 }
 
