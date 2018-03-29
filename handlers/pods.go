@@ -28,6 +28,5 @@ func (podInfo *PodInfoHandler) ListPods(w http.ResponseWriter, r *http.Request, 
 	resp := models.Response{Message: "OK", PodCount: len(pods.Items)}
 	b, _ := json.Marshal(resp)
 
-	w.WriteHeader(http.StatusOK)
 	w.Write(b)
 }
