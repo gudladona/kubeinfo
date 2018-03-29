@@ -1,6 +1,7 @@
 APP := kubeinfo
 ROOT_PATH := $(PWD)
 BUILD_PATH :=  $(PWD)/build
+COV_PATH :=  $(PWD)/coverage
 SHELL := /bin/bash
 TAG_NAME := latest
 
@@ -18,6 +19,7 @@ destroy: delete-kube
 clean:
 	@echo "===> Running Cleanup"
 	rm -rf $(BUILD_PATH)/
+	rm -rf $(COV_PATH)/
 
 #Setup the build directory
 build-setup:
@@ -31,11 +33,10 @@ build-app:
 
 #Test Go code and generate coverage reports
 test:
-	go version
-	mkdir -p $(BUILD_PATH)/coverage/
+	mkdir -p $(COV_PATH)/
 	go get ./...
-	gocov test ./... -v > $(BUILD_PATH)/coverage/coverage.json && \
-	gocov-html $(BUILD_PATH)/coverage/coverage.json > $(BUILD_PATH)/coverage/coverage.html
+	gocov test ./... -v > $(COV_PATH)/coverage.json && \
+	gocov-html $(COV_PATH)/coverage.json > $(COV_PATH)/coverage.html
 
 #Build Docker image into the build directory
 docker:

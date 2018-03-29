@@ -34,6 +34,8 @@ This HTTP service authenticates to the Kubernetes API from an application runnin
 
     > make test
 
+Current code coverage available at ./coverage/coverage.html
+
 ## Testing the API End to End
 
 For the sake of simplicity the Service Type in .kube/service.yml is set to `NodePort`, which allows each Node to proxy that port (the same port number on every Node) into your Service
