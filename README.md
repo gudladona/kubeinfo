@@ -38,7 +38,8 @@ Current code coverage available at ./coverage/coverage.html
 
 ## Testing the API End to End
 
-For the sake of simplicity the Service Type in .kube/service.yml is set to `NodePort`, which allows each Node to proxy that port (the same port number on every Node) into your Service
+For the sake of simplicity the `type` in .kube/service.yml is set to `NodePort`,
+which allows each Node to proxy that port (the same port number on every Node) into the Service.
 
 Once this service is installed on a Kubernetes cluster,
 
@@ -46,12 +47,14 @@ Once this service is installed on a Kubernetes cluster,
 
     ```
     > kubectl get svc | grep kubeinfo
-    kubeinfo                                NodePort       100.64.219.181   <none>                                                 8080:31046/TCP                 27m
+    kubeinfo    NodePort    100.64.219.181  <none> 8080:31046/TCP  27m
     ```
-* Find the pod that the service is running on
+* Find the pod that the service is running on. Although the same port is exposed on all the nodes,
+for simplicity I choose to use the node where the pod is running.
+
     ```
     > kubectl get po | grep kube
-    kubeinfo-7c854d54d8-vp2tw                            1/1       Running   0          30m
+    kubeinfo-7c854d54d8-vp2tw   1/1 Running   0 30m
     ```
 
 * Find the Node that the pod is running on
@@ -64,3 +67,8 @@ Once this service is installed on a Kubernetes cluster,
     > curl http://10.75.24.178:31046/pods
     {"pod_count":314,"message":"OK"}
     ```
+
+Note:
+
+A better approach would be to configure an ingress for the service at a registered domain such as kubeinfo.example.com.
+But, this requires registering a domain, which I think is out of scope.
