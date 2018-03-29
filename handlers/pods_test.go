@@ -1,22 +1,22 @@
 package handlers
 
 import (
+	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
-	"encoding/json"
-	"fmt"
 	"testing"
 
-	"github.com/julienschmidt/httprouter"
-	"k8s.io/client-go/kubernetes/fake"
-	"k8s.io/apimachinery/pkg/runtime"
 	"github.com/gudladona87/kubeinfo/models"
+	"github.com/julienschmidt/httprouter"
+	"k8s.io/apimachinery/pkg/runtime"
+	"k8s.io/client-go/kubernetes/fake"
 
-	k8stesting "k8s.io/client-go/testing"
+	core_v1 "k8s.io/api/core/v1"
 	metadata "k8s.io/apimachinery/pkg/apis/meta/v1"
 	corev1 "k8s.io/client-go/kubernetes/typed/core/v1"
-	core_v1 "k8s.io/api/core/v1"
+	k8stesting "k8s.io/client-go/testing"
 )
 
 func TestPodInfoHandler_ListPods(t *testing.T) {

@@ -1,9 +1,9 @@
 package config
 
 import (
-	"sync"
-	"io/ioutil"
 	"github.com/BurntSushi/toml"
+	"io/ioutil"
+	"sync"
 )
 
 var (

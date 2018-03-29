@@ -3,14 +3,14 @@ package main
 import (
 	"net/http"
 
-	"github.com/gudladona87/kubeinfo/handlers"
-	"github.com/julienschmidt/httprouter"
-	"github.com/gudladona87/kubeinfo/models"
-	"gopkg.in/square/go-jose.v2/json"
 	"github.com/gudladona87/kubeinfo/clients"
+	"github.com/gudladona87/kubeinfo/handlers"
+	"github.com/gudladona87/kubeinfo/models"
+	"github.com/julienschmidt/httprouter"
+	"gopkg.in/square/go-jose.v2/json"
 )
 
-//Health is just the root path of the http server
+//health is just the root path of the http server
 func health(w http.ResponseWriter, _ *http.Request, _ httprouter.Params) {
 	resp := models.Response{Message: "Healthy!"}
 	b, _ := json.Marshal(resp)

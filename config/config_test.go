@@ -6,6 +6,7 @@ func TestReadConfigFromFile(t *testing.T) {
 	type args struct {
 		cfgFile string
 	}
+
 	tests := []struct {
 		name    string
 		args    args

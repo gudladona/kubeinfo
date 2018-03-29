@@ -1,13 +1,13 @@
 package handlers
 
 import (
-	"net/http"
+	"encoding/json"
+	"github.com/gudladona87/kubeinfo/models"
 	"github.com/julienschmidt/httprouter"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	corev1 "k8s.io/client-go/kubernetes/typed/core/v1"
 	"log"
-	"github.com/gudladona87/kubeinfo/models"
-	"encoding/json"
+	"net/http"
 )
 
 //PodInfoHandler provides functions to query Pod metadata.
@@ -15,6 +15,7 @@ type PodInfoHandler struct {
 	CoreClient corev1.CoreV1Interface
 }
 
+//ListPods returns the number of running in the current namespace
 func (podInfo *PodInfoHandler) ListPods(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	pods, err := podInfo.CoreClient.Pods("").List(metav1.ListOptions{})
 	if err != nil {

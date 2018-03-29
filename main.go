@@ -1,11 +1,11 @@
 package main
 
 import (
-	"net/http"
-	"github.com/gudladona87/kubeinfo/config"
 	"flag"
 	"fmt"
+	"github.com/gudladona87/kubeinfo/config"
 	"log"
+	"net/http"
 )
 
 func main() {
