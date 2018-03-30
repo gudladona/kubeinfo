@@ -34,7 +34,7 @@ go get github.com/gudladona87/kubeinfo
 
 3. Install make
 
-4. `make build push deploy`
+4. `make deploy`
 
 ## Running tests
 

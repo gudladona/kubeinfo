@@ -11,7 +11,7 @@ build: clean build-setup build-app docker
 
 push: push-to-docker
 
-deploy: build push-to-docker deploy-kube
+deploy: build push deploy-kube
 
 destroy: delete-kube
 
@@ -19,7 +19,6 @@ destroy: delete-kube
 clean:
 	@echo "===> Running Cleanup"
 	rm -rf $(BUILD_PATH)/
-	rm -rf $(COV_PATH)/
 
 #Setup the build directory
 build-setup:
@@ -33,6 +32,7 @@ build-app:
 
 #Test Go code and generate coverage reports
 test:
+	rm -rf $(COV_PATH)/
 	mkdir -p $(COV_PATH)/
 	go get ./...
 	gocov test ./... -v > $(COV_PATH)/coverage.json && \
@@ -50,7 +50,7 @@ delete-kube:
 
 #Apply Kube deployments
 deploy-kube:
-	kubectl create configmap --dry-run -o yaml --from-file=build/config.cfg | kubectl replace -f -
+	kubectl create configmap kubeinfo-config --dry-run -o yaml --from-file=build/config.cfg | kubectl replace -f -
 	kubectl apply -f build/deploy.yml
 	kubectl apply -f build/service.yml
 
