@@ -1,5 +1,9 @@
-FROM debian:stable
+FROM golang:1.10
 
-COPY ./bin/app .
+WORKDIR /go/src/app
+COPY . .
 
-ENTRYPOINT /app
+RUN go get -d ./...
+RUN go install ./...
+
+CMD ["app"]
