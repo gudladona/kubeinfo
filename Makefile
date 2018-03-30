@@ -19,7 +19,6 @@ destroy: delete-kube
 clean:
 	@echo "===> Running Cleanup"
 	rm -rf $(BUILD_PATH)/
-	rm -rf $(COV_PATH)/
 
 #Setup the build directory
 build-setup:
@@ -29,6 +28,7 @@ build-setup:
 
 #Test Go code and generate coverage reports
 test:
+	rm -rf $(COV_PATH)/
 	mkdir -p $(COV_PATH)/
 	go get ./...
 	gocov test ./... -v > $(COV_PATH)/coverage.json && \
