@@ -1,5 +1,5 @@
-FROM debian:stable
+FROM scratch
 
 COPY ./bin/app .
 
-ENTRYPOINT /app
+CMD ["/app"]
